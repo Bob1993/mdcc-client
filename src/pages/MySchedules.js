@@ -12,11 +12,11 @@ import {
   View,
   Text,
   StyleSheet,
-  Navigator,
   Platform,
   Image,
   TouchableOpacity
 } from 'react-native'
+import {Navigator} from 'react-native-deprecated-custom-components'
 
 const EmptyPadding = Platform.OS === 'ios' ? EMPTY_CELL_HEIGHT : 0
 class MySchedules extends Component {

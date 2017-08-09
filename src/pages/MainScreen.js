@@ -50,7 +50,9 @@ export default class extends React.Component {
           renderIcon={() => <Image source={require('../assets/my-schedule.png')} style={[styles.icon, {height: 28.5}]} />}
           renderSelectedIcon={() => <Image source={require('../assets/my-schedule-active.png')} style={styles.icon} />}
           onPress={() => this.setState({ selectedTab: 'mySchedules' })}>
-          <MySchedules navigator={this.props.navigator} emptyOperation={this.goHome}/>
+          <MySchedules
+            navigator={this.props.navigator}
+            emptyOperation={this.goHome}/>
         </TabNavigator.Item>
       </TabNavigator>
     )

@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import {persistStore, autoRehydrate} from 'redux-persist'
 import {createStore, applyMiddleware} from 'redux'
 import {AsyncStorage} from 'react-native'
-import codePush from 'react-native-code-push'
+// import codePush from 'react-native-code-push'
 import apiRequest from './helper/apiRequestMiddleware'
 import Home from './pages/MainScreen'
 
@@ -18,8 +18,8 @@ import {
   StatusBar,
   BackAndroid,
   View,
-  Navigator
 } from 'react-native'
+import {Navigator} from 'react-native-deprecated-custom-components'
 
 export const STATUS_BAR_HEIGHT = (Platform.OS === 'ios' ? 20 : 25)
 export const NAV_BAR_HEIGHT = (Platform.OS === 'ios' ? 44 : 56)
@@ -32,18 +32,18 @@ export default class extends Component {
    * ON_NEXT_RESUME(2) // 切到后台，重新回来生效
    */
   componentDidMount () {
-    codePush.sync({
-      updateDialog: {
-        optionalIgnoreButtonLabel: '稍后',
-        optionalInstallButtonLabel: '更新',
-        mandatoryUpdateMessage: '',
-        optionalUpdateMessage: '',
-        appendReleaseDescription: true,
-        descriptionPrefix: '有新版本，是否下载？\n\n ===更新内容===\n',
-        title: '更新提示'
-      },
-      installMode: codePush.InstallMode.ON_NEXT_RESUME
-    })
+    // codePush.sync({
+    //   updateDialog: {
+    //     optionalIgnoreButtonLabel: '稍后',
+    //     optionalInstallButtonLabel: '更新',
+    //     mandatoryUpdateMessage: '',
+    //     optionalUpdateMessage: '',
+    //     appendReleaseDescription: true,
+    //     descriptionPrefix: '有新版本，是否下载？\n\n ===更新内容===\n',
+    //     title: '更新提示'
+    //   },
+    //   installMode: codePush.InstallMode.ON_NEXT_RESUME
+    // })
     BackAndroid.addEventListener('hardwareBackPress', this.handleBack)
   }
 
@@ -88,3 +88,33 @@ export default class extends Component {
     return route.scene || Navigator.SceneConfigs.FloatFromBottom
   }
 }
+
+let vv = {
+  state: {
+    data: {
+      loading: false,
+      error: null,
+      updateTime: '',
+      days: [
+        {
+          name: '',
+          topics: {
+            '': {
+              dayId: 0,
+              session: {},
+              isSubscribed: false,
+              //...(topic的其他元素)
+            },
+
+          },
+        }
+      ],
+    },
+    schedule: {
+      subscribing: true,
+      error: null,
+      subscription: ['id1', 'id2'],
+    }
+  }
+}
+
